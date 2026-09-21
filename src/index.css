@@ -1,247 +1,277 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 .rb-wrapper {
-    font-family: 'Inter', sans-serif;
-    color: #334155;
-    background-color: #f8fafc;
-    padding: 40px 20px;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  color: #334155;
+  background-color: #f8fafc;
+  padding: 40px 20px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
 }
 
-
 .rb-container {
-    display: flex;
-    gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: flex-start;
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
 }
 
 /* Editor Styles */
 .rb-editor {
-    flex: 1;
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 0.1),
-        0 2px 4px -2px rgb(0 0 0 / 0.1);
+  flex: 1;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .rb-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #f1f5f9;
-    padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 20px;
 }
 
 .rb-header h2 {
-    margin: 0;
-    color: #0f172a;
-    font-weight: 700;
-    font-size: 24px;
+  margin: 0;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 24px;
 }
 
 /* Form Elements */
 .rb-input-group {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .rb-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #475569;
-    font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #475569;
+  font-size: 14px;
 }
 
 .rb-input,
 .rb-textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: all 0.2s ease;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .rb-input:focus,
 .rb-textarea:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .rb-textarea {
-    min-height: 80px;
-    resize: vertical;
+  min-height: 80px;
+  resize: vertical;
 }
 
 /* Section Cards */
 .rb-section-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .rb-section-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
 }
 
 .rb-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .rb-section-title {
-    margin: 0;
-    color: #1e293b;
-    font-weight: 600;
-    font-size: 18px;
+  margin: 0;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .rb-item-card {
-    background: #ffffff;
-    padding: 15px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    margin-bottom: 12px;
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 /* Buttons */
 .rb-btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-    font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .rb-btn-primary {
-    background: #3b82f6;
-    color: white;
+  background: #3b82f6;
+  color: white;
 }
 
 .rb-btn-primary:hover:not(:disabled) {
-    background: #2563eb;
+  background: #2563eb;
 }
 
 .rb-btn-primary:disabled {
-    background: #94a3b8;
-    cursor: not-allowed;
+  background: #94a3b8;
+  cursor: not-allowed;
 }
 
 .rb-btn-secondary {
-    background: #e2e8f0;
-    color: #475569;
+  background: #e2e8f0;
+  color: #475569;
 }
 
 .rb-btn-secondary:hover:not(:disabled) {
-    background: #cbd5e1;
+  background: #cbd5e1;
 }
 
 .rb-icon-btn {
-    padding: 6px 10px;
-    border-radius: 6px;
-    background: #e2e8f0;
-    color: #475569;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #475569;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .rb-icon-btn:hover:not(:disabled) {
-    background: #cbd5e1;
+  background: #cbd5e1;
 }
 
 .rb-icon-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Live Preview Styles */
 .rb-preview {
-    flex: 1;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow:
-        0 10px 25px -5px rgb(0 0 0 / 0.1),
-        0 8px 10px -6px rgb(0 0 0 / 0.1);
-    border-top: 6px solid #3b82f6;
-    position: sticky;
-    top: 40px;
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow:
+    0 10px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-top: 6px solid #3b82f6;
+  position: sticky;
+  top: 40px;
 }
 
 .rb-preview-badge {
-    display: inline-block;
-    background: #eff6ff;
-    color: #3b82f6;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
+  display: inline-block;
+  background: #eff6ff;
+  color: #3b82f6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
 }
 
 .rb-preview-name {
-    font-size: 38px;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 30px 0;
-    letter-spacing: -1px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 30px 0;
+  letter-spacing: -1px;
 }
 
 .rb-preview-section {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .rb-preview-section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #3b82f6;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .rb-preview-item {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .rb-preview-item h4 {
-    margin: 0 0 5px 0;
-    color: #1e293b;
-    font-size: 18px;
-    font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .rb-preview-item p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+@media print {
+  header,
+  footer,
+  .rb-editor,
+  .wp-block-post-title,
+  .entry-header {
+    display: none !important;
+  }
+
+  .rb-wrapper {
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  .rb-container {
+    display: block;
+    max-width: 100%;
     margin: 0;
-    color: #475569;
-    line-height: 1.6;
-    white-space: pre-wrap;
+  }
+
+  .rb-preview {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .rb-preview-badge {
+    display: none !important;
+  }
 }

@@ -114,13 +114,21 @@ const App = () => {
         <div className="rb-editor">
           <div className="rb-header">
             <h2>Resume Builder</h2>
-            <button
-              className="rb-btn rb-btn-primary"
-              onClick={handleSave}
-              disabled={isSaving}
-            >
-              {isSaving ? "Saving..." : "Save Resume"}
-            </button>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <button
+                className="rb-btn rb-btn-secondary"
+                onClick={() => window.print()}
+              >
+                Export as PDF
+              </button>
+              <button
+                className="rb-btn rb-btn-primary"
+                onClick={handleSave}
+                disabled={isSaving}
+              >
+                {isSaving ? "Saving..." : "Save Resume"}
+              </button>
+            </div>
           </div>
 
           <div className="rb-input-group">
