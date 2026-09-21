@@ -28,6 +28,24 @@ const App = () => {
     setNewSectionTitle("");
   };
 
+  const moveSection = (index, direction) => {
+    const newSections = [...resumeData.sections];
+
+    if (direction === "up" && index > 0) {
+      // Swap current item with the one above it
+      const temp = newSections[index - 1];
+      newSections[index - 1] = newSections[index];
+      newSections[index] = temp;
+    } else if (direction === "down" && index < newSections.length - 1) {
+      // Swap current item with the one below it
+      const temp = newSections[index + 1];
+      newSections[index + 1] = newSections[index];
+      newSections[index] = temp;
+    }
+
+    setResumeData({ ...resumeData, sections: newSections });
+  };
+
   const handleNameChange = (e) => {
     setResumeData({ ...resumeData, fullName: e.target.value });
   };
@@ -100,7 +118,7 @@ const App = () => {
         </div>
 
         <h3>Sections</h3>
-        {resumeData.sections.map((section) => (
+        {resumeData.sections.map((section, index) => (
           <div
             key={section.id}
             style={{
@@ -110,7 +128,44 @@ const App = () => {
               background: "#fafafa",
             }}
           >
-            <h4 style={{ margin: "0 0 10px 0" }}>{section.title}</h4>
+            {/* Header with Title and Up/Down Buttons */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "15px",
+              }}
+            >
+              <h4 style={{ margin: 0 }}>{section.title}</h4>
+              <div style={{ display: "flex", gap: "5px" }}>
+                <button
+                  onClick={() => moveSection(index, "up")}
+                  disabled={index === 0}
+                  style={{
+                    padding: "3px 8px",
+                    cursor: index === 0 ? "not-allowed" : "pointer",
+                  }}
+                  title="Move Up"
+                >
+                  ↑
+                </button>
+                <button
+                  onClick={() => moveSection(index, "down")}
+                  disabled={index === resumeData.sections.length - 1}
+                  style={{
+                    padding: "3px 8px",
+                    cursor:
+                      index === resumeData.sections.length - 1
+                        ? "not-allowed"
+                        : "pointer",
+                  }}
+                  title="Move Down"
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
 
             {section.items.map((item, index) => (
               <div
