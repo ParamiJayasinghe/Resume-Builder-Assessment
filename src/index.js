@@ -14,8 +14,42 @@ const App = () => {
     setResumeData({ ...resumeData, fullName: e.target.value });
   };
 
+  const handleAddItem = (sectionId) => {
+    const newSections = resumeData.sections.map((section) => {
+      if (section.id === sectionId) {
+        return {
+          ...section,
+          items: [...section.items, { title: "", description: "" }],
+        };
+      }
+      return section;
+    });
+    setResumeData({ ...resumeData, sections: newSections });
+  };
+
+  const handleItemChange = (sectionId, itemIndex, field, value) => {
+    const newSections = resumeData.sections.map((section) => {
+      if (section.id === sectionId) {
+        const newItems = [...section.items];
+        newItems[itemIndex] = { ...newItems[itemIndex], [field]: value };
+        return { ...section, items: newItems };
+      }
+      return section;
+    });
+    setResumeData({ ...resumeData, sections: newSections });
+  };
+
   return (
-    <div style={{ display: "flex", gap: "20px", padding: "20px" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "20px",
+        padding: "20px",
+        width: "100vw",
+        marginLeft: "calc(50% - 50vw)",
+        boxSizing: "border-box",
+      }}
+    >
       {/* Left Column: Editor */}
       <div
         style={{
@@ -59,7 +93,51 @@ const App = () => {
             }}
           >
             <h4 style={{ margin: "0 0 10px 0" }}>{section.title}</h4>
-            <button style={{ padding: "5px 10px", cursor: "pointer" }}>
+
+            {section.items.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "#fff",
+                  padding: "10px",
+                  border: "1px solid #ddd",
+                  marginBottom: "10px",
+                }}
+              >
+                <input
+                  type="text"
+                  value={item.title}
+                  onChange={(e) =>
+                    handleItemChange(section.id, index, "title", e.target.value)
+                  }
+                  placeholder="Title (e.g. Job Title, Degree)"
+                  style={{ width: "100%", padding: "5px", marginBottom: "5px" }}
+                />
+                <textarea
+                  value={item.description}
+                  onChange={(e) =>
+                    handleItemChange(
+                      section.id,
+                      index,
+                      "description",
+                      e.target.value,
+                    )
+                  }
+                  placeholder="Description or Details..."
+                  style={{ width: "100%", padding: "5px", minHeight: "60px" }}
+                />
+              </div>
+            ))}
+
+            <button
+              onClick={() => handleAddItem(section.id)}
+              style={{
+                padding: "5px 10px",
+                cursor: "pointer",
+                background: "#f0f0f0",
+                border: "1px solid #ccc",
+              }}
+            >
               + Add {section.title} Item
             </button>
           </div>
@@ -96,11 +174,25 @@ const App = () => {
             >
               {section.title}
             </h3>
+
             {section.items.length === 0 ? (
               <p style={{ color: "#999", fontStyle: "italic" }}>
                 No details provided yet.
               </p>
-            ) : null}
+            ) : (
+              <ul style={{ paddingLeft: "20px", margin: 0 }}>
+                {section.items.map((item, index) => (
+                  <li key={index} style={{ marginBottom: "10px" }}>
+                    <strong style={{ display: "block", fontSize: "16px" }}>
+                      {item.title || "Untitled"}
+                    </strong>
+                    <p style={{ margin: "5px 0 0 0", whiteSpace: "pre-wrap" }}>
+                      {item.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
