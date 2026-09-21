@@ -24,3 +24,26 @@ function resume_builder_init() {
     new Resume_Builder_REST_API();
 }
 add_action( 'plugins_loaded', 'resume_builder_init' );
+
+/**
+ * Plugin Activation Hook (Setup)
+ * Flushes rewrite rules 
+ */
+function resume_builder_activate() {
+    if ( class_exists( 'Resume_Builder_CPT' ) ) {
+        $cpt = new Resume_Builder_CPT();
+        $cpt->register_post_type();
+    }
+    
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'resume_builder_activate' );
+
+/**
+ * Plugin Deactivation Hook (Cleanup)
+ * Clears the rewrite rules. 
+ */
+function resume_builder_deactivate() {
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'resume_builder_deactivate' );
