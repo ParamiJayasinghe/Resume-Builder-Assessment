@@ -1,4 +1,4 @@
-import { createRoot } from "@wordpress/element";
+import { createRoot, useState } from "@wordpress/element";
 
 const App = () => {
   const [resumeData, setResumeData] = useState({
