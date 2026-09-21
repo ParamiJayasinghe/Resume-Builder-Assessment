@@ -13,28 +13,32 @@ class Resume_Builder_Shortcode {
         add_shortcode( 'resume_builder', array( $this, 'render_shortcode' ) );
     }
 
-    public function render_shortcode() {
-        $asset_path = RESUME_BUILDER_PATH . 'build/index.asset.php';
-        
+    public function render_shortcode( $atts ) {
+        $asset_file = include( RESUME_BUILDER_PATH . 'build/index.asset.php' );
+
         // Only enqueue if the build file exists
-        if ( file_exists( $asset_path ) ) {
-            $assets = include $asset_path;
-            
-            wp_enqueue_script(
-                'resume-builder-frontend',
-                RESUME_BUILDER_URL . 'build/index.js',
-                $assets['dependencies'],
-                $assets['version'],
-                true
-            );
+        wp_enqueue_script(
+            'resume-builder-react',
+            RESUME_BUILDER_URL . 'build/index.js',
+            $asset_file['dependencies'],
+            $asset_file['version'],
+            true
+        );
 
-            wp_localize_script( 'resume-builder-frontend', 'resumeBuilderData', array(
-                'root_url' => esc_url_raw( rest_url() ),
-                'nonce'    => wp_create_nonce( 'wp_rest' ),
-                'postId'   => get_the_ID(),
-            ));
-        }
+        // Enqueue CSS stylesheet 
+        wp_enqueue_style(
+            'resume-builder-style',
+            RESUME_BUILDER_URL . 'build/index.css',
+            array(),
+            $asset_file['version']
+        );
 
-        return '<div id="resume-builder-root">Loading Resume Builder...</div>';
+        wp_localize_script( 'resume-builder-react', 'resumeBuilderData', array(
+            'root_url' => get_site_url() . '/wp-json/',
+            'nonce'    => wp_create_nonce( 'wp_rest' ),
+            'postId'   => get_the_ID(),
+        ) );
+
+        return '<div id="resume-builder-root"></div>';
     }
 }
