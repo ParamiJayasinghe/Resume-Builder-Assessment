@@ -1,4 +1,4 @@
-import { createRoot, useState } from "@wordpress/element";
+import { createRoot, useState, useEffect } from "@wordpress/element";
 
 const App = () => {
   const [resumeData, setResumeData] = useState({
@@ -12,6 +12,54 @@ const App = () => {
 
   // State for the new custom section input field
   const [newSectionTitle, setNewSectionTitle] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (window.resumeBuilderData && window.resumeBuilderData.postId) {
+      fetch(
+        `${window.resumeBuilderData.root_url}resume-builder/v1/resume/${window.resumeBuilderData.postId}`,
+        {
+          headers: {
+            "X-WP-Nonce": window.resumeBuilderData.nonce,
+          },
+        },
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.sections) {
+            setResumeData(data);
+          }
+        });
+    }
+  }, []);
+
+  const handleSave = () => {
+    if (!window.resumeBuilderData) return;
+    setIsSaving(true);
+
+    fetch(
+      `${window.resumeBuilderData.root_url}resume-builder/v1/resume/${window.resumeBuilderData.postId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-WP-Nonce": window.resumeBuilderData.nonce,
+        },
+        body: JSON.stringify(resumeData),
+      },
+    )
+      .then((res) => res.json())
+      .then((response) => {
+        setIsSaving(false);
+        if (response.success) {
+          alert("Resume saved successfully!");
+        }
+      })
+      .catch(() => {
+        setIsSaving(false);
+        alert("Error saving resume.");
+      });
+  };
 
   const handleAddSection = () => {
     if (!newSectionTitle.trim()) return;
@@ -96,7 +144,31 @@ const App = () => {
           borderRadius: "4px",
         }}
       >
-        <h2>Resume Builder Editor</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <h2 style={{ margin: 0 }}>Resume Builder Editor</h2>
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            style={{
+              padding: "10px 20px",
+              background: isSaving ? "#ccc" : "#0073aa",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: isSaving ? "not-allowed" : "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            {isSaving ? "Saving..." : "Save Resume"}
+          </button>
+        </div>
 
         <div style={{ marginBottom: "20px" }}>
           <label
