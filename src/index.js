@@ -10,6 +10,24 @@ const App = () => {
     ],
   });
 
+  // State for the new custom section input field
+  const [newSectionTitle, setNewSectionTitle] = useState("");
+
+  const handleAddSection = () => {
+    if (!newSectionTitle.trim()) return;
+    const newSectionId = "custom-" + Date.now();
+
+    setResumeData({
+      ...resumeData,
+      sections: [
+        ...resumeData.sections,
+        { id: newSectionId, title: newSectionTitle, type: "custom", items: [] },
+      ],
+    });
+
+    setNewSectionTitle("");
+  };
+
   const handleNameChange = (e) => {
     setResumeData({ ...resumeData, fullName: e.target.value });
   };
@@ -142,6 +160,38 @@ const App = () => {
             </button>
           </div>
         ))}
+
+        <div
+          style={{
+            marginTop: "30px",
+            paddingTop: "20px",
+            borderTop: "2px dashed #ddd",
+          }}
+        >
+          <h4 style={{ margin: "0 0 10px 0" }}>Add Custom Section</h4>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <input
+              type="text"
+              value={newSectionTitle}
+              onChange={(e) => setNewSectionTitle(e.target.value)}
+              placeholder="e.g. Soft Skills, Certifications"
+              style={{ flex: 1, padding: "8px" }}
+            />
+            <button
+              onClick={handleAddSection}
+              style={{
+                padding: "8px 15px",
+                background: "#0073aa",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+                borderRadius: "4px",
+              }}
+            >
+              Add Section
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Right Column: Live Preview */}
